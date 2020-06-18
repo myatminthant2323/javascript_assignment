@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Room Perquet (Assignment1)</title>
+	<script type="text/javascript">
+
+		function calculate(){
+			room_area = parseInt(document.mainForm.room_width.value) * parseInt(document.mainForm.room_height.value);
+			if(document.getElementById('r1').checked){
+				area = parseInt(document.mainForm.floor_width.value) * parseInt(document.mainForm.floor_width.value);
+			}else if(document.getElementById('r2').checked){
+				area = parseInt(document.mainForm.wall_width.value) * parseInt(document.mainForm.wall_height.value);
+			}
+			noOfTiles = room_area/area;
+			document.mainForm.noOfTiles.value = noOfTiles;
+			total = noOfTiles + noOfTiles * 0.05;
+			document.mainForm.total.value = Math.ceil(total);
+		}
+
+		function display(){
+			if(document.getElementById('r1').checked){
+			document.getElementById('floor').style.display = 'block';
+			document.getElementById('wall').style.display = 'none';
+		}
+		if(document.getElementById('r2').checked){
+			document.getElementById('wall').style.display = 'block';
+			document.getElementById('floor').style.display = 'none';
+		}
+		}
+		
+	</script>
+	<style type="text/css">
+		fieldset
+			{
+			  border:2px solid green;
+			    -moz-border-radius:8px;
+			    -webkit-border-radius:8px;	
+			    border-radius:8px;
+			}
+			legend
+			{
+			  margin-bottom:0px;
+			  margin-left:16px;
+			}
+
+
+	</style>
+</head>
+<body>
+	<form name="mainForm">
+		<h2 style="color: green; text-align: center;" >Flooring Calculator</h2>
+		<fieldset>
+			<legend class="legend1">Room</legend><br/>
+			<label for="room_width">Enter rooms's width: </label>
+			<input type="text" name="room_width"><br/><br/>
+			<label for="room_width">Enter rooms's height: </label>
+			<input type="text" name="room_height"><br/>
+		</fieldset>
+		<br/>
+		<fieldset>
+			<legend>Tiles</legend>
+			<br/>
+			<input type="radio" name="rdo" id="r1" onclick="javascript: display();" value="floor" checked="ckecked">Floor
+			<input type="radio" name="rdo" id="r2" onclick="javascript: display();" value="wall">Wall<br/><br/>
+
+			<div id="floor" style="display: block">
+				<label for="floor_width">Enter width & height: </label>
+				<input type="text" name="floor_width">
+				<input type="button" value="Calculate" onclick="javascript: calculate()" /><br/>
+			</div>
+			<div id="wall" style="display: none">
+				<label for="wall_width">Enter width: </label>
+				<input type="text" name="wall_width"><br/><br/>
+				<label for="wall_width">Enter height: </label>
+				<input type="text" name="wall_height">
+				<input type="button" value="Calculate" onclick="javascript: calculate()" /><br/>
+			</div>
+		</fieldset>
+		<br/>
+		<fieldset>
+			<legend>Result</legend>
+			<br/>
+			<label for="noOfTiles">Before adding 5%: </label>
+			<input type="text" name="noOfTiles" readonly="readonly"/><br/><br/>
+			<label for="noOfTiles">After adding 5%: </label>
+			<input type="text" name="total" readonly="readonly"/>
+		</fieldset>
+	</form>
+</body>
+</html>

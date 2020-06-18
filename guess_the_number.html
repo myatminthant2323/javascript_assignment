@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Guess the Number</title>
+	<script type="text/javascript">
+		let correct_no = Math.random();
+		let isCorrect = false;
+		let i=1;
+		do{
+			let guess_no = prompt("Guess the number: ");
+			
+			if (correct_no == guess_no){
+				isCorrect = true;
+				alert("correct");
+				alert("You guessed "+i+" times");
+				
+			}else if(guess_no < correct_no){
+				alert("Lower");
+			}else if(guess_no > correct_no){
+				alert("Higher");
+			}
+			i++;
+		}while(!isCorrect)
+
+
+	</script>
+</head>
+<body>
+
+
+</body>
+</html>
