@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Room Perquet (Assignment1)</title>
+	<title>Flooring Calculator(Assignment1)</title>
 	<script type="text/javascript">
 
 		function calculate(){
-			room_area = parseInt(document.mainForm.room_width.value) * parseInt(document.mainForm.room_height.value);
 			if(document.getElementById('r1').checked){
+				room_area = parseInt(document.mainForm.room_width.value) * parseInt(document.mainForm.room_height.value);
 				area = parseInt(document.mainForm.floor_width.value) * parseInt(document.mainForm.floor_width.value);
+				noOfTiles = room_area/area;
 			}else if(document.getElementById('r2').checked){
+				room_area = (parseInt(document.mainForm.room_width.value) * 12) * (parseInt(document.mainForm.room_height.value) * 12);
 				area = parseInt(document.mainForm.wall_width.value) * parseInt(document.mainForm.wall_height.value);
+				noOfTiles = room_area/area;
 			}
-			noOfTiles = room_area/area;
-			document.mainForm.noOfTiles.value = noOfTiles;
+			
+			document.mainForm.noOfTiles.value = Math.ceil(noOfTiles);
 			total = noOfTiles + noOfTiles * 0.05;
 			document.mainForm.total.value = Math.ceil(total);
 		}
@@ -27,6 +30,8 @@
 			document.getElementById('floor').style.display = 'none';
 		}
 		}
+
+		
 		
 	</script>
 	<style type="text/css">
@@ -43,6 +48,10 @@
 			  margin-left:16px;
 			}
 
+			.text-label {
+				color: #cdcdcd;
+				font-weight: bold;
+			}
 
 	</style>
 </head>
@@ -52,9 +61,9 @@
 		<fieldset>
 			<legend class="legend1">Room</legend><br/>
 			<label for="room_width">Enter rooms's width: </label>
-			<input type="text" name="room_width"><br/><br/>
+			<input type="text" name="room_width" placeholder="Enter data in feet"><br/><br/>
 			<label for="room_width">Enter rooms's height: </label>
-			<input type="text" name="room_height"><br/>
+			<input type="text" name="room_height" placeholder="Enter data in feet"><br/>
 		</fieldset>
 		<br/>
 		<fieldset>
@@ -65,14 +74,14 @@
 
 			<div id="floor" style="display: block">
 				<label for="floor_width">Enter width & height: </label>
-				<input type="text" name="floor_width">
+				<input type="text" name="floor_width" placeholder="Enter data in feet">
 				<input type="button" value="Calculate" onclick="javascript: calculate()" /><br/>
 			</div>
 			<div id="wall" style="display: none">
 				<label for="wall_width">Enter width: </label>
-				<input type="text" name="wall_width"><br/><br/>
+				<input type="text" name="wall_width" placeholder="Enter data in inches"><br/><br/>
 				<label for="wall_width">Enter height: </label>
-				<input type="text" name="wall_height">
+				<input type="text" name="wall_height" placeholder="Enter data in inches">
 				<input type="button" value="Calculate" onclick="javascript: calculate()" /><br/>
 			</div>
 		</fieldset>
